@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.hydration.controller.MainController"
+            styleClass="root-pane" prefWidth="360" prefHeight="520">
+
+    <top>
+        <VBox spacing="2">
+            <padding>
+                <Insets top="26" right="26" bottom="6" left="26"/>
+            </padding>
+            <HBox alignment="CENTER_LEFT" spacing="10">
+                <VBox spacing="2" HBox.hgrow="ALWAYS">
+                    <Label text="HOY · MAREA" styleClass="eyebrow-label"/>
+                    <Label text="Hidratación" styleClass="title-label"/>
+                </VBox>
+                <HBox fx:id="streakPill" styleClass="streak-pill" alignment="CENTER" spacing="4" visible="false" managed="false">
+                    <Region styleClass="flame-icon"/>
+                    <Label fx:id="streakLabel" text="0 días" styleClass="streak-text"/>
+                </HBox>
+            </HBox>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox alignment="CENTER" spacing="22">
+            <padding>
+                <Insets top="10" right="26" bottom="10" left="26"/>
+            </padding>
+
+            <VBox styleClass="glass-card" alignment="CENTER" spacing="14" maxWidth="1.7976931348623157E308">
+                <Label fx:id="progressLabel" text="0 ml" styleClass="progress-label"/>
+                <Label fx:id="progressSublabel" text="de 2000 ml hoy" styleClass="progress-sublabel"/>
+                <ProgressBar fx:id="progressBar" prefWidth="260" progress="0" styleClass="progress-bar-slim"/>
+                <Label fx:id="remainingLabel" text="Faltan 2000 ml" styleClass="hint-label"/>
+            </VBox>
+
+            <VBox spacing="10" alignment="CENTER">
+                <Label text="REGISTRAR UN VASO" styleClass="eyebrow-label"/>
+                <HBox spacing="10" alignment="CENTER">
+                    <Button styleClass="drop-button" onAction="#logSmallGlass">
+                        <graphic>
+                            <VBox alignment="CENTER" spacing="2">
+                                <Region styleClass="droplet-icon-sm"/>
+                                <Label text="200 ml" styleClass="amount-text"/>
+                            </VBox>
+                        </graphic>
+                    </Button>
+                    <Button styleClass="drop-button" onAction="#logMediumGlass">
+                        <graphic>
+                            <VBox alignment="CENTER" spacing="2">
+                                <Region styleClass="droplet-icon"/>
+                                <Label text="300 ml" styleClass="amount-text"/>
+                            </VBox>
+                        </graphic>
+                    </Button>
+                    <Button styleClass="drop-button" onAction="#logLargeGlass">
+                        <graphic>
+                            <VBox alignment="CENTER" spacing="2">
+                                <Region styleClass="droplet-icon-lg"/>
+                                <Label text="500 ml" styleClass="amount-text"/>
+                            </VBox>
+                        </graphic>
+                    </Button>
+                </HBox>
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER" spacing="10">
+            <padding>
+                <Insets top="6" right="26" bottom="24" left="26"/>
+            </padding>
+            <Button text="Ver historial" styleClass="secondary-button" onAction="#openHistory">
+                <graphic>
+                    <Region styleClass="chart-bars-icon"/>
+                </graphic>
+            </Button>
+            <Button text="Configuración" styleClass="secondary-button" onAction="#openSettings">
+                <graphic>
+                    <Region styleClass="gear-icon"/>
+                </graphic>
+            </Button>
+        </HBox>
+    </bottom>
+
+</BorderPane>

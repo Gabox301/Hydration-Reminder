@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.chart.CategoryAxis?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.hydration.controller.HistoryController"
+            styleClass="root-pane" prefWidth="480" prefHeight="480">
+
+    <top>
+        <VBox spacing="2">
+            <padding>
+                <Insets top="24" right="24" bottom="6" left="24"/>
+            </padding>
+            <Label text="ÚLTIMOS 14 DÍAS" styleClass="eyebrow-label"/>
+            <Label text="Tu historial" styleClass="title-label"/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="16">
+            <padding>
+                <Insets top="10" right="24" bottom="10" left="24"/>
+            </padding>
+
+            <HBox spacing="12">
+                <VBox styleClass="glass-card" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="4">
+                    <Label text="PROMEDIO" styleClass="eyebrow-label"/>
+                    <Label fx:id="averageLabel" text="0 ml" styleClass="progress-label"/>
+                </VBox>
+                <VBox styleClass="glass-card" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="4">
+                    <Label text="MEJOR DÍA" styleClass="eyebrow-label"/>
+                    <Label fx:id="bestDayLabel" text="0 ml" styleClass="progress-label"/>
+                </VBox>
+                <VBox styleClass="glass-card" HBox.hgrow="ALWAYS" alignment="CENTER" spacing="4">
+                    <Label text="RACHA" styleClass="eyebrow-label"/>
+                    <Label fx:id="streakLabel" text="0 días" styleClass="progress-label"/>
+                </VBox>
+            </HBox>
+
+            <VBox styleClass="glass-card" VBox.vgrow="ALWAYS">
+                <LineChart fx:id="historyChart" VBox.vgrow="ALWAYS" animated="false" legendVisible="true">
+                    <xAxis>
+                        <CategoryAxis fx:id="dateAxis" label=""/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis fx:id="mlAxis" label="ml" forceZeroInRange="true"/>
+                    </yAxis>
+                </LineChart>
+            </VBox>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT">
+            <padding>
+                <Insets top="6" right="24" bottom="20" left="24"/>
+            </padding>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Cerrar" styleClass="secondary-button" onAction="#close"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

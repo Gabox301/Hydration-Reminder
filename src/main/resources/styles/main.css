@@ -1,0 +1,315 @@
+/* =========================================================================
+   HydrationReminder — dirección estética "Marea nocturna"
+   Tema oscuro tinta-petróleo con acentos cian bioluminiscentes.
+   Fraunces (display, curvas orgánicas tipo gota) + Manrope (cuerpo, geométrica).
+   ========================================================================= */
+
+@font-face {
+  src: url('/fonts/Fraunces-Variable.ttf');
+}
+@font-face {
+  src: url('/fonts/Manrope-Variable.ttf');
+}
+
+.root {
+  -fx-ink-950: #06141b;
+  -fx-ink-900: #0a1e28;
+  -fx-ink-800: #0f2a37;
+  -fx-ink-700: #163a48;
+  -fx-tide-400: #4fd6c7;
+  -fx-tide-300: #86e8dc;
+  -fx-tide-glow: rgba(79, 214, 199, 0.35);
+  -fx-foam: #eaf7f5;
+  -fx-mist: #9fb8bd;
+  -fx-coral: #ff8a65;
+
+  -fx-font-family: 'Manrope';
+}
+
+/* ---------- Fondo general: degradé tinta con viñeta ---------- */
+.root-pane {
+  -fx-background-color:
+    radial-gradient(center 50% 0%, radius 420px, rgba(79, 214, 199, 0.14) 0%, transparent 70%),
+    linear-gradient(to bottom right, -fx-ink-950, -fx-ink-900 55%, -fx-ink-800);
+}
+
+/* ---------- Tipografía ---------- */
+.title-label {
+  -fx-font-family: 'Fraunces';
+  -fx-font-size: 30px;
+  -fx-font-weight: 500;
+  -fx-text-fill: -fx-foam;
+}
+
+.eyebrow-label {
+  -fx-font-family: 'Manrope';
+  -fx-font-size: 11px;
+  -fx-font-weight: 700;
+  -fx-text-fill: -fx-tide-300;
+}
+
+.progress-label {
+  -fx-font-family: 'Fraunces';
+  -fx-font-size: 22px;
+  -fx-font-weight: 400;
+  -fx-text-fill: -fx-foam;
+}
+
+.progress-sublabel {
+  -fx-font-family: 'Manrope';
+  -fx-font-size: 12px;
+  -fx-text-fill: -fx-mist;
+}
+
+.section-label {
+  -fx-font-family: 'Manrope';
+  -fx-font-size: 13px;
+  -fx-font-weight: 700;
+  -fx-text-fill: -fx-foam;
+}
+
+.hint-label {
+  -fx-font-family: 'Manrope';
+  -fx-font-size: 11px;
+  -fx-text-fill: -fx-mist;
+}
+
+/* ---------- Tarjeta "vidrio esmerilado" ---------- */
+.glass-card {
+  -fx-background-color: linear-gradient(to bottom right, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02));
+  -fx-background-radius: 20;
+  -fx-border-radius: 20;
+  -fx-border-color: rgba(134, 232, 220, 0.18);
+  -fx-border-width: 1;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.45), 24, 0, 0, 10);
+  -fx-padding: 20;
+}
+
+/* ---------- Anillo de progreso (contenedor del ProgressIndicator) ---------- */
+.progress-ring .percentage {
+  -fx-progress-color: -fx-tide-400;
+}
+
+.progress-ring > .indicator {
+  -fx-effect: dropshadow(gaussian, -fx-tide-glow, 18, 0.3, 0, 0);
+}
+
+.progress-bar-slim > .track {
+  -fx-background-color: rgba(255, 255, 255, 0.08);
+  -fx-background-radius: 8;
+}
+.progress-bar-slim > .bar {
+  -fx-background-color: linear-gradient(to right, -fx-tide-400, -fx-tide-300);
+  -fx-background-radius: 8;
+  -fx-background-insets: 0;
+  -fx-padding: 5px;
+  -fx-effect: dropshadow(gaussian, -fx-tide-glow, 10, 0.4, 0, 0);
+}
+
+/* ---------- Botones de registro rápido (gotas) ---------- */
+.drop-button {
+  -fx-background-color: linear-gradient(to bottom, rgba(79, 214, 199, 0.16), rgba(79, 214, 199, 0.05));
+  -fx-background-radius: 16;
+  -fx-border-color: rgba(134, 232, 220, 0.3);
+  -fx-border-radius: 16;
+  -fx-border-width: 1;
+  -fx-text-fill: -fx-foam;
+  -fx-font-family: 'Manrope';
+  -fx-font-weight: 700;
+  -fx-font-size: 13px;
+  -fx-padding: 10 18;
+  -fx-cursor: hand;
+}
+.drop-button:hover {
+  -fx-background-color: linear-gradient(to bottom, rgba(79, 214, 199, 0.3), rgba(79, 214, 199, 0.12));
+  -fx-border-color: -fx-tide-300;
+  -fx-effect: dropshadow(gaussian, -fx-tide-glow, 16, 0.5, 0, 0);
+}
+.drop-button:pressed {
+  -fx-background-color: rgba(79, 214, 199, 0.35);
+}
+.drop-button .amount-text {
+  -fx-font-family: 'Fraunces';
+  -fx-font-size: 16px;
+  -fx-text-fill: -fx-foam;
+}
+
+/* ---------- Botón primario (acento coral, para CTAs destacados) ---------- */
+.primary-button {
+  -fx-background-color: linear-gradient(to right, -fx-tide-400, -fx-tide-300);
+  -fx-background-radius: 14;
+  -fx-text-fill: -fx-ink-950;
+  -fx-font-family: 'Manrope';
+  -fx-font-weight: 800;
+  -fx-font-size: 13px;
+  -fx-padding: 10 20;
+  -fx-cursor: hand;
+}
+.primary-button:hover {
+  -fx-effect: dropshadow(gaussian, -fx-tide-glow, 20, 0.6, 0, 0);
+}
+
+/* ---------- Botón secundario / ghost ---------- */
+.secondary-button {
+  -fx-background-color: transparent;
+  -fx-text-fill: -fx-mist;
+  -fx-font-family: 'Manrope';
+  -fx-font-weight: 600;
+  -fx-font-size: 12px;
+  -fx-border-color: rgba(159, 184, 189, 0.35);
+  -fx-border-radius: 12;
+  -fx-background-radius: 12;
+  -fx-padding: 8 16;
+  -fx-cursor: hand;
+  -fx-graphic-text-gap: 6;
+}
+.secondary-button:hover {
+  -fx-text-fill: -fx-foam;
+  -fx-border-color: -fx-tide-300;
+}
+
+/* ---------- Streak / racha pill ---------- */
+.streak-pill {
+  -fx-background-color: rgba(255, 138, 101, 0.14);
+  -fx-border-color: rgba(255, 138, 101, 0.4);
+  -fx-border-width: 1;
+  -fx-background-radius: 100;
+  -fx-border-radius: 100;
+  -fx-padding: 5 14;
+}
+.streak-pill .streak-text {
+  -fx-text-fill: -fx-coral;
+  -fx-font-family: 'Manrope';
+  -fx-font-weight: 700;
+  -fx-font-size: 12px;
+}
+
+/* ---------- Controles de formulario (Settings) ---------- */
+.field-label {
+  -fx-font-family: 'Manrope';
+  -fx-font-weight: 700;
+  -fx-font-size: 12px;
+  -fx-text-fill: -fx-foam;
+}
+
+.field-hint {
+  -fx-font-family: 'Manrope';
+  -fx-font-size: 10.5px;
+  -fx-text-fill: -fx-mist;
+}
+
+.dark-spinner,
+.dark-combo,
+.dark-time {
+  -fx-background-color: rgba(255, 255, 255, 0.05);
+  -fx-background-radius: 10;
+  -fx-border-radius: 10;
+  -fx-border-color: rgba(255, 255, 255, 0.12);
+  -fx-border-width: 1;
+  -fx-text-fill: -fx-foam;
+  -fx-prompt-text-fill: -fx-mist;
+}
+.dark-spinner .text-field,
+.dark-time .text-field {
+  -fx-background-color: transparent;
+  -fx-text-fill: -fx-foam;
+}
+
+.toggle-track {
+  -fx-background-color: rgba(255, 255, 255, 0.1);
+  -fx-background-radius: 100;
+}
+.toggle-track:selected {
+  -fx-background-color: -fx-tide-400;
+}
+
+.slider-teal .track {
+  -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+.slider-teal .thumb {
+  -fx-background-color: -fx-tide-300;
+  -fx-effect: dropshadow(gaussian, -fx-tide-glow, 8, 0.5, 0, 0);
+}
+
+/* ---------- SVG icons via -fx-shape ---------- */
+.svg-icon {
+  -fx-background-color: currentColor;
+  -fx-min-width: 16px;
+  -fx-min-height: 16px;
+}
+
+/* Droplet (💧) — para botones de registro rápido */
+.droplet-icon {
+  -fx-shape: 'M 12.000 2.500 L 6.330 10.643 A 6.909 6.909 0 1 0 17.670 10.643 Z';
+  -fx-background-color: -fx-tide-400;
+  -fx-min-width: 20px;
+  -fx-min-height: 20px;
+}
+
+.droplet-icon-sm {
+  -fx-shape: 'M 12.000 2.500 L 6.330 10.643 A 6.909 6.909 0 1 0 17.670 10.643 Z';
+  -fx-background-color: -fx-tide-400;
+  -fx-min-width: 18px;
+  -fx-min-height: 18px;
+}
+
+.droplet-icon-lg {
+  -fx-shape: 'M 12.000 2.500 L 6.330 10.643 A 6.909 6.909 0 1 0 17.670 10.643 Z';
+  -fx-background-color: -fx-tide-400;
+  -fx-min-width: 24px;
+  -fx-min-height: 24px;
+}
+
+/* Flame (🔥) — para racha/streak */
+.flame-icon {
+  -fx-shape: 'M 12.0 2.2 C 8.4 6.4 6.6 9.4 6.6 12.4 C 6.6 10.9 7.4 9.7 8.3 8.9 C 7.9 10.5 8.0 11.9 8.9 13.0 C 8.2 12.2 7.8 11.3 7.8 10.3 C 5.7 12.9 4.6 15.4 4.6 17.4 C 4.6 20.7 7.9 21.8 12.0 21.8 C 16.1 21.8 19.4 20.7 19.4 17.4 C 19.4 14.6 17.6 12.0 15.3 10.0 C 15.9 11.6 15.7 13.0 14.9 13.9 C 15.3 12.3 15.0 10.5 14.0 8.9 C 13.6 10.4 13.6 11.7 14.1 12.7 C 13.2 11.7 12.7 10.3 12.9 8.6 C 13.1 6.3 12.8 4.1 12.0 2.2 Z';
+  -fx-background-color: -fx-coral;
+  -fx-min-width: 16px;
+  -fx-min-height: 16px;
+}
+
+/* Chart bars (📊) — para botón de historial */
+.chart-bars-icon {
+  -fx-shape: 'M 3.400 21.000 L 3.400 14.600 A 1.100 1.100 0 0 1 4.500 13.500 L 6.700 13.500 A 1.100 1.100 0 0 1 7.800 14.600 L 7.800 21.000 Z M 9.800 21.000 L 9.800 9.600 A 1.100 1.100 0 0 1 10.900 8.500 L 13.100 8.500 A 1.100 1.100 0 0 1 14.200 9.600 L 14.200 21.000 Z M 16.200 21.000 L 16.200 4.600 A 1.100 1.100 0 0 1 17.300 3.500 L 19.500 3.500 A 1.100 1.100 0 0 1 20.600 4.600 L 20.600 21.000 Z';
+  -fx-background-color: -fx-mist;
+  -fx-min-width: 16px;
+  -fx-min-height: 16px;
+}
+
+/* Gear (⚙️) — para botón de configuración */
+.gear-icon {
+  -fx-shape: 'M 18.600 12.000 A 6.600 6.600 0 1 1 5.400 12.000 A 6.600 6.600 0 1 1 18.600 12.000 Z M 22.255 12.000 A 2.150 2.150 0 1 1 17.955 12.000 A 2.150 2.150 0 1 1 22.255 12.000 Z M 19.881 17.731 A 2.150 2.150 0 1 1 15.581 17.731 A 2.150 2.150 0 1 1 19.881 17.731 Z M 14.150 20.105 A 2.150 2.150 0 1 1 9.850 20.105 A 2.150 2.150 0 1 1 14.150 20.105 Z M 8.419 17.731 A 2.150 2.150 0 1 1 4.119 17.731 A 2.150 2.150 0 1 1 8.419 17.731 Z M 6.045 12.000 A 2.150 2.150 0 1 1 1.745 12.000 A 2.150 2.150 0 1 1 6.045 12.000 Z M 8.419 6.269 A 2.150 2.150 0 1 1 4.119 6.269 A 2.150 2.150 0 1 1 8.419 6.269 Z M 14.150 3.895 A 2.150 2.150 0 1 1 9.850 3.895 A 2.150 2.150 0 1 1 14.150 3.895 Z M 19.881 6.269 A 2.150 2.150 0 1 1 15.581 6.269 A 2.150 2.150 0 1 1 19.881 6.269 Z M 14.600 12.000 A 2.600 2.600 0 1 0 9.400 12.000 A 2.600 2.600 0 1 0 14.600 12.000 Z';
+  -fx-background-color: -fx-mist;
+  -fx-min-width: 16px;
+  -fx-min-height: 16px;
+}
+
+/* ---------- Separadores sutiles ---------- */
+.hairline {
+  -fx-background-color: rgba(255, 255, 255, 0.08);
+  -fx-pref-height: 1;
+  -fx-max-height: 1;
+}
+
+/* ---------- Tooltip ---------- */
+.tooltip {
+  -fx-background-color: -fx-ink-700;
+  -fx-text-fill: -fx-foam;
+  -fx-font-family: 'Manrope';
+  -fx-font-size: 11px;
+  -fx-background-radius: 8;
+}
+
+/* ---------- Scrollbars discretas ---------- */
+.scroll-pane,
+.scroll-pane > .viewport {
+  -fx-background-color: transparent;
+}
+.scroll-bar:vertical,
+.scroll-bar:horizontal {
+  -fx-background-color: transparent;
+}
+.scroll-bar .thumb {
+  -fx-background-color: rgba(255, 255, 255, 0.15);
+  -fx-background-radius: 8;
+}

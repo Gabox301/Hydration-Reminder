@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Region?>
+<?import javafx.scene.layout.VBox?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="com.hydration.controller.SettingsController"
+            styleClass="root-pane" prefWidth="380" prefHeight="520">
+
+    <top>
+        <VBox spacing="2">
+            <padding>
+                <Insets top="24" right="24" bottom="6" left="24"/>
+            </padding>
+            <Label text="PERSONALIZÁ TU RITMO" styleClass="eyebrow-label"/>
+            <Label text="Configuración" styleClass="title-label"/>
+        </VBox>
+    </top>
+
+    <center>
+        <VBox spacing="18">
+            <padding>
+                <Insets top="12" right="24" bottom="12" left="24"/>
+            </padding>
+
+            <VBox styleClass="glass-card" spacing="14">
+                <VBox spacing="4">
+                    <Label text="Meta diaria (ml)" styleClass="field-label"/>
+                    <Spinner fx:id="goalSpinner" styleClass="dark-spinner" editable="true" maxWidth="1.7976931348623157E308"/>
+                    <Label text="Cantidad total de agua que querés tomar por día" styleClass="field-hint"/>
+                </VBox>
+
+                <VBox spacing="4">
+                    <Label text="Intervalo de recordatorio (min)" styleClass="field-label"/>
+                    <Spinner fx:id="intervalSpinner" styleClass="dark-spinner" editable="true" maxWidth="1.7976931348623157E308"/>
+                    <Label text="Cada cuánto te avisamos que tomes agua" styleClass="field-hint"/>
+                </VBox>
+            </VBox>
+
+            <VBox styleClass="glass-card" spacing="14">
+                <Label text="Horario activo" styleClass="field-label"/>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <ComboBox fx:id="activeFromCombo" styleClass="dark-combo" prefWidth="130"/>
+                    <Label text="—" styleClass="hint-label"/>
+                    <ComboBox fx:id="activeToCombo" styleClass="dark-combo" prefWidth="130"/>
+                </HBox>
+                <Label text="Solo vas a recibir recordatorios dentro de este rango" styleClass="field-hint"/>
+            </VBox>
+
+            <VBox styleClass="glass-card" spacing="14">
+                <HBox alignment="CENTER_LEFT" spacing="10">
+                    <CheckBox fx:id="quietModeCheck" styleClass="field-label" text="Modo silencioso"/>
+                    <Region HBox.hgrow="ALWAYS"/>
+                </HBox>
+                <HBox spacing="10" alignment="CENTER_LEFT">
+                    <ComboBox fx:id="quietFromCombo" styleClass="dark-combo" prefWidth="130"/>
+                    <Label text="—" styleClass="hint-label"/>
+                    <ComboBox fx:id="quietToCombo" styleClass="dark-combo" prefWidth="130"/>
+                </HBox>
+                <Label text="No vas a recibir notificaciones en este rango, aunque esté dentro del horario activo" styleClass="field-hint" wrapText="true"/>
+            </VBox>
+
+            <Region VBox.vgrow="ALWAYS"/>
+        </VBox>
+    </center>
+
+    <bottom>
+        <HBox alignment="CENTER_RIGHT" spacing="10">
+            <padding>
+                <Insets top="6" right="24" bottom="24" left="24"/>
+            </padding>
+            <Region HBox.hgrow="ALWAYS"/>
+            <Button text="Cancelar" styleClass="secondary-button" onAction="#cancel"/>
+            <Button text="Guardar cambios" styleClass="primary-button" onAction="#save"/>
+        </HBox>
+    </bottom>
+
+</BorderPane>

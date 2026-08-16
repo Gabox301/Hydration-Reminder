@@ -1,0 +1,50 @@
+# ============================================================
+#  Hydration-Reminder — .gitignore
+#  Proyecto Java 25 / Maven / JavaFX 24
+# ============================================================
+
+# ========== Maven / Build ==========
+target/
+*.class
+*.jar
+*.war
+*.ear
+*.log
+dependency-reduced-pom.xml
+
+# ========== Artefactos de empaquetado accidental en la raíz ==========
+# El SFX 7z extrae temporalmente la app portable (JRE + jar) al ejecutarse.
+# Si por error se extrae sobre el directorio del proyecto, que NO se commitee.
+/app/
+/runtime/
+
+# ========== Metadata local de herramientas ==========
+.atl/
+
+# ========== IDEs ==========
+# IntelliJ
+.idea/
+*.iml
+*.iws
+out/
+
+# Eclipse
+.project
+.classpath
+.settings/
+bin/
+
+# NetBeans
+nbproject/
+nb-configuration.xml
+
+# ========== VS Code ==========
+.vscode/
+
+# ========== Sistema Operativo ==========
+.DS_Store
+Thumbs.db
+desktop.ini
+~$*
+*.swp
+*~
