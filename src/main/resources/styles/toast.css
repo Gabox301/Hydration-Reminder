@@ -1,0 +1,44 @@
+/* =========================================================================
+   Hydration Reminder — Toast "Marea nocturna"
+   Replica la tarjeta "vidrio esmerilado" y la paleta de main.css para las
+   notificaciones de recordatorio (ventanas JavaFX sin decorar).
+   ========================================================================= */
+
+.toast-card {
+  -fx-background-color:
+    linear-gradient(to bottom right, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)), rgba(10, 30, 40, 0.96);
+  -fx-background-radius: 18;
+  -fx-border-color: rgba(134, 232, 220, 0.28);
+  -fx-border-radius: 18;
+  -fx-border-width: 1;
+  -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.5), 22, 0.15, 0, 8);
+  -fx-padding: 14;
+  -fx-cursor: hand;
+}
+
+.toast-title {
+  -fx-font-family: 'Manrope ExtraBold';
+  -fx-font-size: 14px;
+  -fx-text-fill: #86e8dc;
+}
+
+.toast-message {
+  -fx-font-family: 'Manrope';
+  -fx-font-size: 12px;
+  -fx-text-fill: #eaf7f5;
+}
+
+.toast-action {
+  -fx-font-family: 'Manrope Bold';
+  -fx-font-size: 12px;
+  -fx-text-fill: #06141b;
+  -fx-background-color: linear-gradient(to right, #4fd6c7, #86e8dc);
+  -fx-background-radius: 999;
+  -fx-padding: 7 16 7 16;
+  -fx-cursor: hand;
+  -fx-effect: dropshadow(gaussian, rgba(79, 214, 199, 0.35), 12, 0.4, 0, 0);
+}
+
+.toast-action:hover {
+  -fx-background-color: linear-gradient(to right, #7fe3d6, #a5f1e8);
+}

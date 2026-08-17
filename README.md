@@ -178,7 +178,7 @@ copy /y target\hydration-reminder-1.0.0.jar target\jpackage-input\
 ```bash
 jpackage ^
   --type app-image ^
-  --name HydrationReminder ^
+  --name Hydration Reminder ^
   --app-version 1.0.0 ^
   --input target\jpackage-input ^
   --main-jar hydration-reminder-1.0.0.jar ^
@@ -187,8 +187,8 @@ jpackage ^
   --icon src\main\resources\icons\app-icon.ico
 ```
 
-Genera la carpeta autocontenida `target/dist/HydrationReminder/` con su JRE
-embebido: ejecutás `HydrationReminder.exe` y la app abre sin depender de un Java
+Genera la carpeta autocontenida `target/dist/Hydration Reminder/` con su JRE
+embebido: ejecutás `Hydration_Reminder.exe` y la app abre sin depender de un Java
 instalado. Es la forma más simple de probar/distribuir sin instalar.
 
 ### 3. Instalador .exe / .msi (distribución final)
@@ -197,7 +197,7 @@ instalado. Es la forma más simple de probar/distribuir sin instalar.
 REM Instalador EXE de Windows (no requiere herramientas adicionales)
 jpackage ^
   --type exe ^
-  --name HydrationReminder ^
+  --name Hydration Reminder ^
   --app-version 1.0.0 ^
   --input target\jpackage-input ^
   --main-jar hydration-reminder-1.0.0.jar ^
@@ -210,7 +210,7 @@ jpackage ^
 REM Instalador MSI (requiere el toolkit WiX 3.0+ instalado en el sistema)
 jpackage ^
   --type msi ^
-  --name HydrationReminder ^
+  --name Hydration Reminder ^
   --app-version 1.0.0 ^
   --input target\jpackage-input ^
   --main-jar hydration-reminder-1.0.0.jar ^

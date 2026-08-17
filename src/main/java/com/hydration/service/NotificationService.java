@@ -1,106 +1,66 @@
 package com.hydration.service;
 
-import java.awt.Color;
-import java.awt.Image;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.UncheckedIOException;
+import java.util.List;
+import java.util.function.Consumer;
 
-import javax.imageio.ImageIO;
-
-import dorkbox.notify.Notify;
-import dorkbox.notify.Position;
-import dorkbox.notify.Theme;
+import com.hydration.util.ToastManager;
+import com.hydration.util.ToastManager.ToastAction;
 
 /**
- * Envía notificaciones nativas del sistema operativo.
- * Usa {@code dorkbox.notify}, que es independiente del ícono de la bandeja.
+ * Dispara las notificaciones de recordatorio como toasts propios de JavaFX
+ * (ver {@link ToastManager}) con la estética "Marea nocturna" de la app.
  *
  * <p>
- * El tema visual replica la dirección "Marea nocturna" de {@code main.css}:
- * fondo tinta-petróleo, texto foam/cian, ícono de gota y tipografía Manrope,
- * en vez del cuadro blanco con texto simple que trae dorkbox.notify por
- * defecto. La librería dibuja el panel como un rectángulo sólido vía Java2D
- * (no soporta esquinas redondeadas, degradés ni el efecto "vidrio
- * esmerilado" de las tarjetas de la UI), así que paleta + tipografía + ícono
- * de marca es el máximo nivel de consistencia visual alcanzable acá.
+ * Es una fachada: construye el contenido (título, mensaje, ícono y acciones)
+ * y delega el render en {@link ToastManager}, que crea una ventana sin
+ * decorar con esquinas redondeadas, animación de entrada y auto-cierre. Los
+ * botones de acción registran un vaso directo (200/300/500 ml, los mismos
+ * tamaños que el menú de la bandeja) sin abrir la ventana principal; hacer
+ * clic en el cuerpo de la toast abre la app.
  */
 public class NotificationService {
 
-    // Paleta "Marea nocturna" (mismos valores que las variables -fx-* de main.css).
-    private static final Color INK_900 = new Color(0x0A, 0x1E, 0x28);
-    private static final Color TIDE_300 = new Color(0x86, 0xE8, 0xDC);
-    private static final Color TIDE_400 = new Color(0x4F, 0xD6, 0xC7);
-    private static final Color FOAM = new Color(0xEA, 0xF7, 0xF5);
-    private static final Color MIST = new Color(0x9F, 0xB8, 0xBD);
+    private final ToastManager toastManager;
+    private final Runnable onOpenApp;
+    private final Consumer<Integer> onQuickLog;
 
-    /**
-     * dorkbox.notify.Theme recibe las fuentes como texto "familia ESTILO
-     * tamaño" (ver {@code FontUtil.parseFont} en dorkbox:Utilities): la
-     * palabra pegada al tamaño siempre se descarta del nombre de familia, y
-     * solo dispara negrita/cursiva sintética si es exactamente "BOLD" o
-     * "ITALIC". Para conservar el nombre de familia de dos palabras
-     * "Manrope ExtraBold" (ya es un peso extra bold real, no hace falta
-     * sintetizarlo) se agrega "PLAIN" como relleno inerte antes del tamaño;
-     * de lo contrario la librería recorta "ExtraBold" y se queda solo con
-     * "Manrope".
-     */
-    private static final Theme MAREA_NOCTURNA_THEME = new Theme(
-            "Manrope ExtraBold PLAIN 14",
-            "Manrope PLAIN 12",
-            INK_900,
-            TIDE_300,
-            FOAM,
-            MIST,
-            TIDE_400);
+    public NotificationService(Runnable onOpenApp, Consumer<Integer> onQuickLog) {
+        this(new ToastManager(), onOpenApp, onQuickLog);
+    }
 
-    private static final Image DROPLET_ICON = loadIcon("/icons/droplet.png");
-    private static final Image FLAME_ICON = loadIcon("/icons/flame.png");
+    NotificationService(ToastManager toastManager, Runnable onOpenApp,
+            Consumer<Integer> onQuickLog) {
+        this.toastManager = toastManager;
+        this.onOpenApp = onOpenApp;
+        this.onQuickLog = onQuickLog;
+    }
 
     public void sendReminder(int currentMl, int goalMl) {
         boolean goalMet = currentMl >= goalMl;
         String message = goalMet
-                ? "¡Meta cumplida! Llevás %d ml hoy. Un vaso más no viene mal".formatted(currentMl)
-                : "Hora de tomar agua (%d / %d ml hoy)".formatted(currentMl, goalMl);
-
-        themedNotify(goalMet ? FLAME_ICON : DROPLET_ICON)
-                .title("HydrationReminder")
-                .text(message)
-                .hideAfter(8000)
-                .show();
+                ? "¡Meta cumplida! Llevas %d ml hoy. Un vaso más no viene mal".formatted(currentMl)
+                : "Llevas %d ml de los %d ml del día. ¡Hora de tomar agua!"
+                        .formatted(currentMl, goalMl);
+        List<ToastAction> actions = goalMet
+                ? List.of()
+                : List.of(
+                        new ToastAction("200 ml", () -> onQuickLog.accept(200)),
+                        new ToastAction("300 ml", () -> onQuickLog.accept(300)),
+                        new ToastAction("500 ml", () -> onQuickLog.accept(500)));
+        toastManager.show(
+                "Hydration Reminder",
+                message,
+                goalMet ? "/icons/flame.png" : "/icons/droplet.png",
+                onOpenApp,
+                actions);
     }
 
     public void sendGoalReached(int goalMl) {
-        themedNotify(FLAME_ICON)
-                .title("¡Meta del día cumplida!")
-                .text("Llegaste a los %d ml de hoy.".formatted(goalMl))
-                .hideAfter(8000)
-                .show();
-    }
-
-    /**
-     * Notificación base con el tema y el ícono de marca ya aplicados.
-     * Importante: hay que seguir encadenando hacia {@code .show()} (nunca
-     * {@code .showWarning()}/{@code .showInformation()}/etc.), porque esos
-     * atajos pisan el ícono con el dibujo genérico de warning/info/error de
-     * la librería antes de mostrar la notificación.
-     */
-    private static Notify themedNotify(Image icon) {
-        Notify notify = Notify.Companion.create()
-                .theme(MAREA_NOCTURNA_THEME)
-                .position(Position.BOTTOM_RIGHT);
-        return icon != null ? notify.image(icon) : notify;
-    }
-
-    private static Image loadIcon(String classpathPath) {
-        try (InputStream in = NotificationService.class.getResourceAsStream(classpathPath)) {
-            if (in == null) {
-                return null; // degrada con gracia: la notificación se muestra sin ícono
-            }
-            return ImageIO.read(in);
-        } catch (IOException e) {
-            throw new UncheckedIOException("No se pudo cargar el ícono " + classpathPath, e);
-        }
-
+        toastManager.show(
+                "¡Meta del día cumplida!",
+                "Llegaste a los %d ml de hoy.".formatted(goalMl),
+                "/icons/flame.png",
+                onOpenApp,
+                List.of());
     }
 }

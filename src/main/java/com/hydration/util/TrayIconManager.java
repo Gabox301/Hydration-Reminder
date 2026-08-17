@@ -26,8 +26,9 @@ import javafx.application.Platform;
  * algunos equipos (dorkbox/SystemTray #209), dejando la app sin forma de
  * reabrir la ventana ni salir. Con AWT se distingue click izquierdo (reabrir
  * la ventana principal) de click derecho (menú contextual, que el sistema
- * muestra automáticamente). Las notificaciones nativas siguen usando
- * {@code dorkbox.notify}, que es independiente del ícono de la bandeja.
+ * muestra automáticamente). Las notificaciones de recordatorio son toasts
+ * propios de JavaFX (ver {@link com.hydration.util.ToastManager}), ajenos al
+ * ícono de la bandeja.
  */
 public class TrayIconManager {
 
@@ -62,7 +63,7 @@ public class TrayIconManager {
 
         TrayIcon icon = new TrayIcon(
                 loadImage(iconStream),
-                "HydrationReminder",
+                "Hydration Reminder",
                 buildMenu(onOpenApp, onQuickLog, onTogglePause, onExit));
         icon.setImageAutoSize(true);
         icon.addMouseListener(new MouseAdapter() {

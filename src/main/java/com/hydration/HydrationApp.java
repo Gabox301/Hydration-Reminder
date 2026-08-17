@@ -49,7 +49,7 @@ public class HydrationApp extends Application {
         Scene scene = new Scene(root, 360, 520);
         scene.getStylesheets().add(getClass().getResource("/styles/main.css").toExternalForm());
 
-        stage.setTitle("HydrationReminder");
+        stage.setTitle("Hydration Reminder");
         stage.getIcons().addAll(AppIcons.loadAll(getClass()));
         stage.setScene(scene);
         stage.setOnCloseRequest(e -> {
@@ -66,7 +66,8 @@ public class HydrationApp extends Application {
                 this::togglePause,
                 this::requestExit);
 
-        scheduler = new ReminderScheduler(db, new NotificationService(), db::loadSettings);
+        scheduler = new ReminderScheduler(db, new NotificationService(this::showMainWindow, this::quickLog),
+                db::loadSettings);
         scheduler.start();
     }
 
@@ -106,10 +107,10 @@ public class HydrationApp extends Application {
      */
     private void requestExit() {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-        alert.setTitle("Salir de HydrationReminder");
+        alert.setTitle("Salir de Hydration Reminder");
         alert.setHeaderText("¿Cerrar la app?");
         alert.setContentText(
-                "Si cerrás HydrationReminder no vas a recibir más recordatorios de hidratación hasta que la vuelvas a abrir.");
+                "Si cierras Hydration Reminder no vas a recibir más recordatorios de hidratación hasta que la vuelvas a abrir.");
 
         ButtonType closeApp = new ButtonType("Cerrar", ButtonBar.ButtonData.OK_DONE);
         ButtonType cancel = new ButtonType("Cancelar", ButtonBar.ButtonData.CANCEL_CLOSE);
@@ -138,8 +139,8 @@ public class HydrationApp extends Application {
         if (trayIconManager != null)
             trayIconManager.remove();
         Platform.exit();
-        // Force-exit: hilos no-daemon de librerías de terceros (dorkbox.notify)
-        // podrían impedir que el JVM termine solo con Platform.exit().
+        // Force-exit: hilos no-daemon de librerías de terceros podrían impedir
+        // que el JVM termine solo con Platform.exit().
         System.exit(0);
     }
 

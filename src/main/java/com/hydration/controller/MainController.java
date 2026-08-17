@@ -83,7 +83,7 @@ public class MainController {
 
                 int remaining = Math.max(0, settings.dailyGoalMl() - total);
                 remainingLabel.setText(remaining == 0
-                        ? "¡Meta del día cumplida! 🎉"
+                        ? "¡Meta del día cumplida!"
                         : "Faltan " + remaining + " ml");
 
                 boolean showStreak = streak > 0;
@@ -104,7 +104,7 @@ public class MainController {
 
             Stage stage = new Stage();
             stage.initModality(Modality.NONE);
-            stage.setTitle("Historial — HydrationReminder");
+            stage.setTitle("Historial — Hydration Reminder");
             stage.getIcons().addAll(AppIcons.loadAll(getClass()));
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/styles/main.css").toExternalForm());
@@ -124,7 +124,7 @@ public class MainController {
 
             Stage stage = new Stage();
             stage.initModality(Modality.APPLICATION_MODAL);
-            stage.setTitle("Configuración — HydrationReminder");
+            stage.setTitle("Configuración — Hydration Reminder");
             stage.getIcons().addAll(AppIcons.loadAll(getClass()));
             Scene scene = new Scene(root);
             scene.getStylesheets().add(getClass().getResource("/styles/main.css").toExternalForm());

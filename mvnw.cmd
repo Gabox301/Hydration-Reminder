@@ -42,7 +42,7 @@
 @SET MVNW_PASSWORD=
 
 @REM ----------------------------------------------------------------------------
-@REM HydrationReminder: antes de clean/run, termina JVMs residuales de la app.
+@REM Hydration Reminder: antes de clean/run, termina JVMs residuales de la app.
 @REM La app vive en la bandeja al cerrar la ventana (setImplicitExit(false)) y
 @REM bloquea target\classes\fonts\static bajo OneDrive. Solo se matchea el main
 @REM class de la app (com.hydration.HydrationApp); no se tocan otros procesos

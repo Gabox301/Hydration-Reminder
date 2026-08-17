@@ -21,7 +21,7 @@
             <padding>
                 <Insets top="24" right="24" bottom="6" left="24"/>
             </padding>
-            <Label text="PERSONALIZÁ TU RITMO" styleClass="eyebrow-label"/>
+            <Label text="PERSONALIZA TU RITMO" styleClass="eyebrow-label"/>
             <Label text="Configuración" styleClass="title-label"/>
         </VBox>
     </top>
@@ -37,12 +37,12 @@
                     <VBox spacing="4" HBox.hgrow="ALWAYS" maxWidth="1.7976931348623157E308">
                         <Label text="Meta diaria (ml)" styleClass="field-label"/>
                         <Spinner fx:id="goalSpinner" styleClass="dark-spinner" editable="true" maxWidth="1.7976931348623157E308"/>
-                        <Label text="Total de agua que querés tomar en todo el día" styleClass="field-hint" wrapText="true" minHeight="30"/>
+                        <Label text="Total de agua que quieres tomar en el día" styleClass="field-hint" wrapText="true" minHeight="30"/>
                     </VBox>
                     <VBox spacing="4" HBox.hgrow="ALWAYS" maxWidth="1.7976931348623157E308">
                         <Label text="Intervalo (min)" styleClass="field-label"/>
                         <Spinner fx:id="intervalSpinner" styleClass="dark-spinner" editable="true" maxWidth="1.7976931348623157E308"/>
-                        <Label text="Cada cuántos minutos se envía un recordatorio" styleClass="field-hint" wrapText="true" minHeight="30"/>
+                        <Label text="Cada cuántos minutos se te enviará un recordatorio" styleClass="field-hint" wrapText="true" minHeight="30"/>
                     </VBox>
                 </HBox>
             </VBox>
@@ -54,7 +54,7 @@
                     <Label text="—" styleClass="hint-label"/>
                     <ComboBox fx:id="activeToCombo" styleClass="dark-combo" prefWidth="130"/>
                 </HBox>
-                <Label text="Solo vas a recibir recordatorios dentro de este rango" styleClass="field-hint"/>
+                <Label text="Solo vas a recibir los recordatorios dentro de este rango" styleClass="field-hint"/>
             </VBox>
 
             <VBox styleClass="glass-card" spacing="14">
@@ -67,7 +67,7 @@
                     <Label text="—" styleClass="hint-label"/>
                     <ComboBox fx:id="quietToCombo" styleClass="dark-combo" prefWidth="130"/>
                 </HBox>
-                <Label text="No vas a recibir notificaciones en este rango, aunque esté dentro del horario activo" styleClass="field-hint" wrapText="true"/>
+                <Label text="Si activas este modo no vas a recibir notificaciones en este rango que configures, aunque esté dentro del horario activo" styleClass="field-hint" wrapText="true" minHeight="30"/>
             </VBox>
 
             <Region VBox.vgrow="ALWAYS"/>

@@ -67,7 +67,7 @@ class TrayIconManagerTest {
                 }, () -> {
                 });
 
-        assertEquals("HydrationReminder", manager.getTrayIcon().getToolTip());
+        assertEquals("Hydration Reminder", manager.getTrayIcon().getToolTip());
         assertEquals(true, manager.getTrayIcon().isImageAutoSize());
     }
 }
