@@ -4,6 +4,7 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Region?>
@@ -12,7 +13,7 @@
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.hydration.controller.MainController"
-            styleClass="root-pane" prefWidth="360" prefHeight="520">
+            styleClass="root-pane" prefWidth="360" prefHeight="560">
 
     <top>
         <VBox spacing="2">
@@ -21,11 +22,11 @@
             </padding>
             <HBox alignment="CENTER_LEFT" spacing="10">
                 <VBox spacing="2" HBox.hgrow="ALWAYS">
-                    <Label text="HOY · MAREA" styleClass="eyebrow-label"/>
+                    <Label text="HOY" styleClass="eyebrow-label"/>
                     <Label text="Hidratación" styleClass="title-label"/>
                 </VBox>
                 <HBox fx:id="streakPill" styleClass="streak-pill" alignment="CENTER" spacing="4" visible="false" managed="false">
-                    <Region styleClass="flame-icon"/>
+                    <ImageView styleClass="flame-icon"/>
                     <Label fx:id="streakLabel" text="0 días" styleClass="streak-text"/>
                 </HBox>
             </HBox>
@@ -46,12 +47,12 @@
             </VBox>
 
             <VBox spacing="10" alignment="CENTER">
-                <Label text="REGISTRAR UN VASO" styleClass="eyebrow-label"/>
+                <Label text="REGISTRAR UNA INGESTA" styleClass="eyebrow-label"/>
                 <HBox spacing="10" alignment="CENTER">
                     <Button styleClass="drop-button" onAction="#logSmallGlass">
                         <graphic>
                             <VBox alignment="CENTER" spacing="2">
-                                <Region styleClass="droplet-icon-sm"/>
+                                <ImageView styleClass="droplet-icon-sm"/>
                                 <Label text="200 ml" styleClass="amount-text"/>
                             </VBox>
                         </graphic>
@@ -59,7 +60,7 @@
                     <Button styleClass="drop-button" onAction="#logMediumGlass">
                         <graphic>
                             <VBox alignment="CENTER" spacing="2">
-                                <Region styleClass="droplet-icon"/>
+                                <ImageView styleClass="droplet-icon"/>
                                 <Label text="300 ml" styleClass="amount-text"/>
                             </VBox>
                         </graphic>
@@ -67,7 +68,7 @@
                     <Button styleClass="drop-button" onAction="#logLargeGlass">
                         <graphic>
                             <VBox alignment="CENTER" spacing="2">
-                                <Region styleClass="droplet-icon-lg"/>
+                                <ImageView styleClass="droplet-icon-lg"/>
                                 <Label text="500 ml" styleClass="amount-text"/>
                             </VBox>
                         </graphic>
@@ -86,12 +87,12 @@
             </padding>
             <Button text="Ver historial" styleClass="secondary-button" onAction="#openHistory">
                 <graphic>
-                    <Region styleClass="chart-bars-icon"/>
+                    <ImageView styleClass="chart-bars-icon"/>
                 </graphic>
             </Button>
             <Button text="Configuración" styleClass="secondary-button" onAction="#openSettings">
                 <graphic>
-                    <Region styleClass="gear-icon"/>
+                    <ImageView styleClass="gear-icon"/>
                 </graphic>
             </Button>
         </HBox>

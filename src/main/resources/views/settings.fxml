@@ -33,17 +33,18 @@
             </padding>
 
             <VBox styleClass="glass-card" spacing="14">
-                <VBox spacing="4">
-                    <Label text="Meta diaria (ml)" styleClass="field-label"/>
-                    <Spinner fx:id="goalSpinner" styleClass="dark-spinner" editable="true" maxWidth="1.7976931348623157E308"/>
-                    <Label text="Cantidad total de agua que querés tomar por día" styleClass="field-hint"/>
-                </VBox>
-
-                <VBox spacing="4">
-                    <Label text="Intervalo de recordatorio (min)" styleClass="field-label"/>
-                    <Spinner fx:id="intervalSpinner" styleClass="dark-spinner" editable="true" maxWidth="1.7976931348623157E308"/>
-                    <Label text="Cada cuánto te avisamos que tomes agua" styleClass="field-hint"/>
-                </VBox>
+                <HBox spacing="12" alignment="TOP_LEFT">
+                    <VBox spacing="4" HBox.hgrow="ALWAYS" maxWidth="1.7976931348623157E308">
+                        <Label text="Meta diaria (ml)" styleClass="field-label"/>
+                        <Spinner fx:id="goalSpinner" styleClass="dark-spinner" editable="true" maxWidth="1.7976931348623157E308"/>
+                        <Label text="Total de agua que querés tomar en todo el día" styleClass="field-hint" wrapText="true" minHeight="30"/>
+                    </VBox>
+                    <VBox spacing="4" HBox.hgrow="ALWAYS" maxWidth="1.7976931348623157E308">
+                        <Label text="Intervalo (min)" styleClass="field-label"/>
+                        <Spinner fx:id="intervalSpinner" styleClass="dark-spinner" editable="true" maxWidth="1.7976931348623157E308"/>
+                        <Label text="Cada cuántos minutos se envía un recordatorio" styleClass="field-hint" wrapText="true" minHeight="30"/>
+                    </VBox>
+                </HBox>
             </VBox>
 
             <VBox styleClass="glass-card" spacing="14">
@@ -79,8 +80,8 @@
                 <Insets top="6" right="24" bottom="24" left="24"/>
             </padding>
             <Region HBox.hgrow="ALWAYS"/>
-            <Button text="Cancelar" styleClass="secondary-button" onAction="#cancel"/>
-            <Button text="Guardar cambios" styleClass="primary-button" onAction="#save"/>
+            <Button text="Cancelar" styleClass="secondary-button, settings-action" onAction="#cancel"/>
+            <Button text="Guardar cambios" styleClass="primary-button, settings-action" onAction="#save"/>
         </HBox>
     </bottom>
 

@@ -116,7 +116,7 @@ instalar Maven: el wrapper lo descarga automáticamente la primera vez.
 
 ```bash
 # Windows
-mvnw.cmd clean javafx:run
+.\mvnw.cmd clean javafx:run
 
 # macOS / Linux
 ./mvnw clean javafx:run
@@ -131,6 +131,22 @@ mvn clean javafx:run
 
 También podés compilar (sin abrir la ventana) con `mvnw.cmd clean compile`, y
 empaquetar el jar con `mvnw.cmd clean package`.
+
+### Ejecutar los tests
+
+```bash
+# Windows
+.\mvnw.cmd clean test
+
+# macOS / Linux
+./mvnw clean test
+```
+
+> La suite usa **JUnit 5.10** y **Mockito 5.23.0**. Los tests de
+> `NotificationService` disparan notificaciones nativas reales del SO durante la
+> corrida (esto agrega ~8 s y abre notificaciones en pantalla); los demás tests
+> son rápidos. Al final se imprime el resumen, por ejemplo:
+> `Tests run: 30, Failures: 0, Errors: 0, Skipped: 0`.
 
 ## Empaquetar ejecutable (jpackage)
 

@@ -1,3 +1,118 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none">
-  <path d="M 18.600 12.000 A 6.600 6.600 0 1 1 5.400 12.000 A 6.600 6.600 0 1 1 18.600 12.000 Z M 22.255 12.000 A 2.150 2.150 0 1 1 17.955 12.000 A 2.150 2.150 0 1 1 22.255 12.000 Z M 19.881 17.731 A 2.150 2.150 0 1 1 15.581 17.731 A 2.150 2.150 0 1 1 19.881 17.731 Z M 14.150 20.105 A 2.150 2.150 0 1 1 9.850 20.105 A 2.150 2.150 0 1 1 14.150 20.105 Z M 8.419 17.731 A 2.150 2.150 0 1 1 4.119 17.731 A 2.150 2.150 0 1 1 8.419 17.731 Z M 6.045 12.000 A 2.150 2.150 0 1 1 1.745 12.000 A 2.150 2.150 0 1 1 6.045 12.000 Z M 8.419 6.269 A 2.150 2.150 0 1 1 4.119 6.269 A 2.150 2.150 0 1 1 8.419 6.269 Z M 14.150 3.895 A 2.150 2.150 0 1 1 9.850 3.895 A 2.150 2.150 0 1 1 14.150 3.895 Z M 19.881 6.269 A 2.150 2.150 0 1 1 15.581 6.269 A 2.150 2.150 0 1 1 19.881 6.269 Z M 14.600 12.000 A 2.600 2.600 0 1 0 9.400 12.000 A 2.600 2.600 0 1 0 14.600 12.000 Z" fill="currentColor"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 500" width="100%" height="100%">
+  <defs>
+    <!-- Gradiente Metálico para el Cuerpo Principal -->
+    <linearGradient id="metalBody" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#4a5568"/>
+      <stop offset="25%" stop-color="#2d3748"/>
+      <stop offset="50%" stop-color="#1a202c"/>
+      <stop offset="75%" stop-color="#2d3748"/>
+      <stop offset="100%" stop-color="#4a5568"/>
+    </linearGradient>
+
+    <!-- Gradiente de Bisel (Brillo Cónico) -->
+    <radialGradient id="bevelHighlight" cx="35%" cy="30%" r="70%">
+      <stop offset="0%" stop-color="#cbd5e0" stop-opacity="0.8"/>
+      <stop offset="40%" stop-color="#718096" stop-opacity="0.3"/>
+      <stop offset="80%" stop-color="#1a202c" stop-opacity="0.8"/>
+      <stop offset="100%" stop-color="#0f172a" stop-opacity="0.95"/>
+    </radialGradient>
+
+    <!-- Gradiente para los Anillos Interiores e Indentaciones -->
+    <linearGradient id="innerRingGrad" x1="0%" y1="100%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#1a202c"/>
+      <stop offset="50%" stop-color="#4a5568"/>
+      <stop offset="100%" stop-color="#718096"/>
+    </linearGradient>
+
+    <!-- Sombra Proyectada General -->
+    <filter id="dropShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feOffset dx="0" dy="10" result="offset"/>
+      <feComponentTransfer>
+        <feFuncA type="linear" slope="0.45"/>
+      </feComponentTransfer>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+
+    <!-- Bisel Interior Suave -->
+    <filter id="innerShadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feComposite operator="out" in="SourceGraphic" in2="blur" result="inverse"/>
+      <feFlood flood-color="#000000" flood-opacity="0.6" result="color"/>
+      <feComposite operator="in" in="color" in2="inverse" result="shadow"/>
+      <feComposite operator="over" in="shadow" in2="SourceGraphic"/>
+    </filter>
+
+    <!-- Brillo Especular Estilo Metálico -->
+    <linearGradient id="rimGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.6"/>
+      <stop offset="50%" stop-color="#ffffff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.5"/>
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#dropShadow)">
+    <!-- ===== CAPA 1: SILUETA DEL ENGRANE CON DIENTES (6 DIENTES INDUSTRIALES) ===== -->
+    <!-- Ruta combinada: Circulo base (r=180) con 6 dientes trapezoidales colocados simétricamente -->
+    <path d="
+      M 250 70 
+      L 225 70 L 215 115 A 180 180 0 0 0 171 133 L 130 110 L 105 145 L 133 186 A 180 180 0 0 0 115 230 L 70 240 L 70 290 L 115 300 A 180 180 0 0 0 133 344 L 105 385 L 130 420 L 171 397 A 180 180 0 0 0 215 415 L 225 460 L 275 460 L 285 415 A 180 180 0 0 0 329 397 L 370 420 L 395 385 L 367 344 A 180 180 0 0 0 385 300 L 430 290 L 430 240 L 385 230 A 180 180 0 0 0 367 186 L 395 145 L 370 110 L 329 133 A 180 180 0 0 0 285 115 L 275 70 Z
+    " fill="url(#metalBody)" stroke="#1a202c" stroke-width="2"/>
+
+    <!-- Biselado de volumen y sombra propia sobre toda la silueta exterior -->
+    <path d="
+      M 250 70 
+      L 225 70 L 215 115 A 180 180 0 0 0 171 133 L 130 110 L 105 145 L 133 186 A 180 180 0 0 0 115 230 L 70 240 L 70 290 L 115 300 A 180 180 0 0 0 133 344 L 105 385 L 130 420 L 171 397 A 180 180 0 0 0 215 415 L 225 460 L 275 460 L 285 415 A 180 180 0 0 0 329 397 L 370 420 L 395 385 L 367 344 A 180 180 0 0 0 385 300 L 430 290 L 430 240 L 385 230 A 180 180 0 0 0 367 186 L 395 145 L 370 110 L 329 133 A 180 180 0 0 0 285 115 L 275 70 Z
+    " fill="url(#bevelHighlight)" style="mix-blend-mode: overlay;"/>
+
+    <!-- ===== CAPA 2: DETALLES DE CORTE Y RELEVE EN DIENTES ===== -->
+    <!-- Chaflán/Brillo en la cresta superior de cada diente -->
+    <path d="M 225 72 L 275 72" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+    <path d="M 130 112 L 105 147" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+    <path d="M 370 112 L 395 147" stroke="#ffffff" stroke-width="2" stroke-linecap="round" opacity="0.4"/>
+    <path d="M 72 240 L 72 290" stroke="#ffffff" stroke-width="3" stroke-linecap="round" opacity="0.6"/>
+
+    <!-- ===== CAPA 3: ANILLO BAJORRELIEVE EXTERNO (CANALETA MECANIZADA) ===== -->
+    <circle cx="250" cy="250" r="145" fill="none" stroke="#0f172a" stroke-width="8" opacity="0.7"/>
+    <circle cx="250" cy="250" r="141" fill="none" stroke="#718096" stroke-width="1.5" opacity="0.8"/>
+
+    <!-- ===== CAPA 4: CAVIDADES DEL CUERPO (PERFORACIONES DE DISEÑO/ALIGERAMIENTO) ===== -->
+    <!-- 6 Cortes circulares simétricos mecanizados dentro de la estructura -->
+    <g fill="#0f172a" stroke="url(#innerRingGrad)" stroke-width="2.5" filter="url(#innerShadow)">
+      <circle cx="250" cy="155" r="22"/>
+      <circle cx="332" cy="202" r="22"/>
+      <circle cx="332" cy="298" r="22"/>
+      <circle cx="250" cy="345" r="22"/>
+      <circle cx="168" cy="298" r="22"/>
+      <circle cx="168" cy="202" r="22"/>
+    </g>
+
+    <!-- ===== CAPA 5: BUJE / NÚCLEO CENTRAL ===== -->
+    <!-- Anillo elevado central -->
+    <circle cx="250" cy="250" r="75" fill="url(#metalBody)" stroke="#0f172a" stroke-width="3"/>
+    <circle cx="250" cy="250" r="75" fill="url(#bevelHighlight)" style="mix-blend-mode: overlay;"/>
+    <circle cx="250" cy="250" r="74" fill="none" stroke="url(#rimGlow)" stroke-width="2"/>
+
+    <!-- Muesca / Canal del eje -->
+    <circle cx="250" cy="250" r="50" fill="#0b0f19" stroke="#334155" stroke-width="2"/>
+
+    <!-- Eje central con muesca de chaveta (Keyway) -->
+    <path d="
+      M 250 200 
+      A 50 50 0 1 0 250 300 
+      A 50 50 0 0 0 262 201.5 
+      L 262 212 
+      L 238 212 
+      L 238 201.5 
+      A 50 50 0 0 0 250 200 Z" 
+      fill="#050811" stroke="#1e293b" stroke-width="1.5"/>
+
+    <!-- ===== CAPA 6: BRILLOS FINALES Y LUCES ESPECULARES (Acentos de Icono) ===== -->
+    <!-- Brillo curvo reflectante superior en el buje central -->
+    <path d="M 185 235 A 68 68 0 0 1 315 235" fill="none" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" opacity="0.5"/>
+    <path d="M 210 210 A 50 50 0 0 1 290 210" fill="none" stroke="#ffffff" stroke-width="1.5" stroke-linecap="round" opacity="0.3"/>
+  </g>
 </svg>

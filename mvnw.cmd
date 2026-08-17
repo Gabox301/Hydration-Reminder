@@ -40,9 +40,33 @@
 @SET __MVNW_ARG0_NAME__=
 @SET MVNW_USERNAME=
 @SET MVNW_PASSWORD=
-@IF NOT "%__MVNW_CMD__%"=="" (%__MVNW_CMD__% %*)
+
+@REM ----------------------------------------------------------------------------
+@REM HydrationReminder: antes de clean/run, termina JVMs residuales de la app.
+@REM La app vive en la bandeja al cerrar la ventana (setImplicitExit(false)) y
+@REM bloquea target\classes\fonts\static bajo OneDrive. Solo se matchea el main
+@REM class de la app (com.hydration.HydrationApp); no se tocan otros procesos
+@REM java (p. ej. el Java Language Server de VS Code).
+@REM ----------------------------------------------------------------------------
+@SET "__HR_HAS_CLEAN="
+@for %%A in (%*) do @if /I "%%A"=="clean" set __HR_HAS_CLEAN=1
+@for %%A in (%*) do @if /I "%%A"=="javafx:run" set __HR_HAS_CLEAN=1
+@IF NOT DEFINED __HR_HAS_CLEAN GOTO :hr_run
+@for /f "usebackq delims=" %%P in (`powershell -noprofile -command "Get-CimInstance Win32_Process | Where-Object { ($_.Name -eq 'java.exe' -or $_.Name -eq 'javaw.exe') -and $_.CommandLine -match 'com\.hydration\.HydrationApp' } | ForEach-Object { $_.ProcessId }"`) do @taskkill /F /PID %%P >nul 2>&1
+:hr_run
+
+@IF "%__MVNW_CMD__%"=="" GOTO :hr_no_maven
+@call %__MVNW_CMD__% %*
+@REM Reintento defensivo: si clean falla por un lock transitorio de OneDrive/el
+@REM indexador de Windows, fuerza el borrado de target y corre maven de nuevo.
+@IF ERRORLEVEL 1 IF DEFINED __HR_HAS_CLEAN GOTO :hr_retry
+@exit /b %errorlevel%
+:hr_retry
+powershell -noprofile -command "Remove-Item -LiteralPath '%~dp0target' -Recurse -Force -ErrorAction SilentlyContinue" >nul
+@call %__MVNW_CMD__% %*
+@exit /b %errorlevel%
+:hr_no_maven
 @echo Cannot start maven from wrapper >&2 && exit /b 1
-@GOTO :EOF
 : end batch / begin powershell #>
 
 $ErrorActionPreference = "Stop"

@@ -46,7 +46,7 @@ public class SettingsController {
         this.onSaved = onSaved;
 
         goalSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(500, 6000, 2000, 100));
-        intervalSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(10, 240, 60, 5));
+        intervalSpinner.setValueFactory(new SpinnerValueFactory.IntegerSpinnerValueFactory(5, 240, 60, 5));
 
         List<String> timeSlots = buildTimeSlots();
         for (ComboBox<String> combo : List.of(activeFromCombo, activeToCombo, quietFromCombo, quietToCombo)) {

@@ -22,12 +22,21 @@ public final class AppIcons {
     public static List<Image> loadAll(Class<?> resourceRoot) {
         List<Image> icons = new ArrayList<>();
         for (int size : SIZES) {
-            String path = "/icons/app-icon-" + size + ".png";
-            var url = resourceRoot.getResource(path);
-            if (url != null) {
-                icons.add(new Image(url.toExternalForm()));
+            Image icon = load(resourceRoot, size);
+            if (icon != null) {
+                icons.add(icon);
             }
         }
         return icons;
+    }
+
+    /**
+     * Carga el ícono de un tamaño específico, o {@code null} si el recurso no
+     * existe. Útil para gráficos de diálogos (p. ej. el logo de un Alert).
+     */
+    public static Image load(Class<?> resourceRoot, int size) {
+        String path = "/icons/app-icon-" + size + ".png";
+        var url = resourceRoot.getResource(path);
+        return url != null ? new Image(url.toExternalForm()) : null;
     }
 }
