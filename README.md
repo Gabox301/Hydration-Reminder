@@ -114,8 +114,6 @@ evitando el aspecto por defecto de JavaFX.
 - **Ajuste dinámico de meta**: integrar una API de clima y sugerir aumentar la meta en días de calor
 - **Exportación de historial** a CSV/PDF
 - **Perfiles múltiples**: útil si varias personas comparten la misma compu
-- **Sonidos personalizables** para las notificaciones
-- **Atajo global de teclado** para registrar un vaso sin abrir la ventana principal
 - **Sincronización opcional** (Google Drive / archivo compartido) para tener el historial en más de un dispositivo
 - **Cantidad libre de ml** además de los tres botones predefinidos
 
@@ -164,24 +162,29 @@ empaquetar el jar con `mvnw.cmd clean package`.
 El build de Maven genera un ejecutable nativo de Windows con **launch4j**:
 el plugin **shade** arma un jar con todas las dependencias (JavaFX, sus DLL
 nativas y los recursos) y launch4j lo envuelve en un `Hydration_Reminder.exe`.
+Además, con **jpackage** (el JDK incluye la herramienta) se genera una
+**carpeta autocontenida** con un JRE embebido y su ZIP: se descomprime y se
+ejecuta sin tener Java instalado en la máquina.
 
 ```bash
-# Compila, corre los tests y genera el EXE
+# Compila, corre los tests y genera el EXE + el ZIP portable
 .\mvnw.cmd clean package
 ```
 
 Resultados dentro de `target\`:
 
-| Archivo                            | Descripción                                     |
-| ---------------------------------- | ----------------------------------------------- |
-| `hydration-reminder-1.0.0.jar`     | Jar de la app (sin dependencias)                |
-| `hydration-reminder-1.0.0-all.jar` | Jar sombreado: app + JavaFX + SQLite + recursos |
-| `dist\Hydration_Reminder.exe`      | Ejecutable de Windows (launch4j)                |
+| Archivo                                      | Descripción                                               |
+| -------------------------------------------- | --------------------------------------------------------- |
+| `hydration-reminder-1.0.0.jar`               | Jar de la app (sin dependencias)                          |
+| `hydration-reminder-1.0.0-all.jar`           | Jar sombreado: app + JavaFX + SQLite + recursos           |
+| `dist\Hydration_Reminder.exe`                | Ejecutable de Windows (launch4j, usa el Java instalado)   |
+| `portable\Hydration Reminder\`               | Carpeta autocontenida: EXE + runtime embebido (jpackage)  |
+| `dist\hydration-reminder-1.0.0-portable.zip` | ZIP de la carpeta autocontenida (sin instalación ni Java) |
 
-> El EXE se lanza con el JRE del sistema: el pom exige **Java 25+ instalado**
-> en la máquina destino (`<jre><minVersion>25.0.0</minVersion>`). Si en el
-> futuro querés una carpeta autocontenida con JRE embebido (sin depender de un
-> Java instalado), `jpackage` sobre el jar sombreado sigue siendo la vía.
+> El EXE de launch4j se lanza con el JRE del sistema: el pom exige **Java 25+
+> instalado** en la máquina destino (`<jre><minVersion>25.0.0</minVersion>`).
+> La opción portable (jpackage) empaqueta su propio runtime: descomprimís el
+> ZIP y ejecutás `Hydration Reminder.exe` directamente.
 
 ## Notas de implementación
 
