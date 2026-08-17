@@ -100,6 +100,7 @@ public class ToastManager {
         slideIn(stage);
         scheduleHide(stage);
         relayout();
+        SoundPlayer.playNotification();
     }
 
     private Stage buildStage(String title, String message, String iconPath,
@@ -108,6 +109,7 @@ public class ToastManager {
         stage.initStyle(StageStyle.TRANSPARENT);
         stage.setAlwaysOnTop(true);
         stage.setResizable(false);
+        stage.getIcons().addAll(AppIcons.loadAll(ToastManager.class));
 
         VBox card = new VBox(8);
         card.getStyleClass().add("toast-card");

@@ -28,6 +28,11 @@
             <artifactId>javafx-fxml</artifactId>
             <version>${javafx.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.openjfx</groupId>
+            <artifactId>javafx-media</artifactId>
+            <version>${javafx.version}</version>
+        </dependency>
 
         <!-- SQLite -->
         <dependency>
@@ -67,6 +72,7 @@
                     <mainClass>com.hydration.HydrationApp</mainClass>
                     <options>
                         <option>--enable-native-access=javafx.graphics</option>
+                        <option>--enable-native-access=javafx.media</option>
                         <option>--enable-native-access=ALL-UNNAMED</option>
                         <option>--sun-misc-unsafe-memory-access=allow</option>
                     </options>
@@ -199,6 +205,7 @@
                                 <minVersion>25.0.0</minVersion>
                                 <opts>
                                     <opt>--enable-native-access=javafx.graphics</opt>
+                                    <opt>--enable-native-access=javafx.media</opt>
                                     <opt>--enable-native-access=ALL-UNNAMED</opt>
                                     <opt>--sun-misc-unsafe-memory-access=allow</opt>
                                 </opts>

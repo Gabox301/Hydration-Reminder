@@ -274,21 +274,21 @@
 /* Droplet (💧) — imagen vectorial rasterizada (droplet.svg), proporción 100x130.
    Se muestra vía ImageView con -fx-preserve-ratio para que nunca se aplane. */
 .droplet-icon {
-  -fx-image: url('/icons/droplet.png');
+  -fx-image: url('/icons/water.png');
   -fx-preserve-ratio: true;
   -fx-fit-width: 26px;
   -fx-fit-height: 34px;
 }
 
 .droplet-icon-sm {
-  -fx-image: url('/icons/droplet.png');
+  -fx-image: url('/icons/water.png');
   -fx-preserve-ratio: true;
   -fx-fit-width: 22px;
   -fx-fit-height: 29px;
 }
 
 .droplet-icon-lg {
-  -fx-image: url('/icons/droplet.png');
+  -fx-image: url('/icons/water.png');
   -fx-preserve-ratio: true;
   -fx-fit-width: 30px;
   -fx-fit-height: 39px;
@@ -304,7 +304,7 @@
 
 /* Chart bars (📊) — para botón de historial */
 .chart-bars-icon {
-  -fx-image: url('/icons/chart-bars.png');
+  -fx-image: url('/icons/history.png');
   -fx-preserve-ratio: true;
   -fx-fit-width: 16px;
   -fx-fit-height: 16px;
@@ -312,7 +312,7 @@
 
 /* Gear (⚙️) — para botón de configuración */
 .gear-icon {
-  -fx-image: url('/icons/gear.png');
+  -fx-image: url('/icons/settings.png');
   -fx-preserve-ratio: true;
   -fx-fit-width: 16px;
   -fx-fit-height: 16px;
